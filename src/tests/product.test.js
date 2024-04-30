@@ -72,7 +72,7 @@ test("GET ->BASE_URL, should return statusCode 201, and res.body.length ===1", a
         
 } )
 
-test("PUT -> BAE_URL, should return ststusCode 200, and res.body.title == bodyupdate.title", async()=>{
+test("PUT -> BASE_URL, should return ststusCode 200, and res.body.title == bodyupdate.title", async()=>{
     const bodyUpdate ={
         title:"iphone 15"
     }
@@ -86,12 +86,12 @@ test("PUT -> BAE_URL, should return ststusCode 200, and res.body.title == bodyup
     expect(res.body.title).toBe(bodyUpdate.title)
 })
 
-test("Delete -> BASE_URL, should return statusCode 204", async()=>{
+test('Delete -> BASE_URL, should return statusCode 204', async () => {
     const res = await request(app)
-        .delete (`${BASE_URL}/${productId}`)
-        .set('Authorization', `Bearer ${TOKEN}`)
-        
-        expect (res.statusCode).toBe(204)
-
-        await category.destroy()
-})
+      .delete(`${BASE_URL}/${productId}`)
+      .set('Authorization', `Bearer ${TOKEN}`)
+  
+    expect(res.statusCode).toBe(204)
+  
+    await category.destroy() //! siempre va en la ultima linea, del ultimo test del archivo
+  })
